@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTestimonials();
     setupScrollAnimations();
     setupSmoothScroll();
+    setupMobileMenu();
 });
 
 function renderProjects() {
@@ -259,7 +260,20 @@ function setupSmoothScroll() {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const navMenu = document.getElementById('nav-menu');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
             }
         });
+    });
+}
+
+function setupMobileMenu() {
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('nav-menu');
+    
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('active');
     });
 }
